@@ -40,10 +40,10 @@ if __name__ == "__main__":
     model = LitClassification()
 
     data = ClassificationData()
-    train_dataset = data.train_dataset("/media/mahmud/Work/retinopathy_dataset/data_split/train")
-    train_dataloader = DataLoader(train_dataset,batch_size=4,shuffle=True)
-    val_dataset = data.train_dataset("/media/mahmud/Work/retinopathy_dataset/data_split/val")
-    val_dataloader = DataLoader(train_dataset,batch_size=4,shuffle=True)
+    train_dataset = data.train_dataset("/home/nexus/data_split/train")
+    train_dataloader = DataLoader(train_dataset,batch_size=256,shuffle=True,num_workers=4)
+    val_dataset = data.train_dataset("/home/nexus/data_split/val")
+    val_dataloader = DataLoader(train_dataset,batch_size=256,shuffle=True,num_workers=4)
     
-    trainer = L.Trainer(max_epochs=3)
+    trainer = L.Trainer(max_epochs=20)
     trainer.fit(model, train_dataloaders=train_dataloader,val_dataloaders=val_dataloader)
